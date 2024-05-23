@@ -1,10 +1,11 @@
 import streamlit as st
 import mysql.connector
 from mysql.connector import Error
+import pandas as pd
 
 # Database connection details
 db_config = {
-    'host': '35.238.104.14',  # Use your database VM's external IP address
+    'host': '10.128.0.3',  # Internal IP address of the database VM
     'user': 'streamlit_user',
     'password': 'SecureP@ssw0rd1',
     'database': 'streamlit_db'
@@ -24,7 +25,7 @@ connection = create_connection()
 
 # Function to fetch data from the database
 def fetch_data(connection):
-    query = "SELECT * FROM your_table_name"  # Replace with your table name
+    query = "SELECT * FROM tasks"  # Updated to use the tasks table
     cursor = connection.cursor()
     cursor.execute(query)
     result = cursor.fetchall()
@@ -33,7 +34,7 @@ def fetch_data(connection):
 # Display data from the database
 if connection:
     data = fetch_data(connection)
-    df = pd.DataFrame(data, columns=['column1', 'column2'])  # Adjust columns as per your table
+    df = pd.DataFrame(data, columns=['id', 'task_name', 'description', 'status'])  # Adjust columns as per your table
     st.write('Data from the database:')
     st.write(df)
 
