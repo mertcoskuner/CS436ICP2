@@ -12,9 +12,9 @@ def create_connection():
     connection = None
     try:
         connection = mysql.connector.connect(
-            host='YOUR_DB_VM_IP_ADDRESS',
-            user='streamlit_user',
-            password='password',
+            host='35.238.104.14',
+            user='root',
+            password='SecureP@ssw0rd1',
             database='streamlit_db'
         )
         st.success("Successfully connected to the database")
